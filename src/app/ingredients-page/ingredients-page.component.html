@@ -1,0 +1,75 @@
+<h1>INGREDIENTS TABLE CRUD</h1>
+<div>
+  <app-ingredients-table> </app-ingredients-table>
+</div>
+<br>
+<div>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Create New Ingredient</mat-card-title>
+          <mat-card-subtitle>Adds Ingredient to Ingredients Table</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #ingredientCreateForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Ingredient Name</mat-label>
+              <input required matInput [(ngModel)]="newIngredient.name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Ingredient Category</mat-label>
+              <input required matInput [(ngModel)]="newIngredient.category" name="category">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitCreateIngredient(newIngredient)">Submit New Ingredient</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Delete an Ingredient</mat-card-title>
+          <mat-card-subtitle>Submit an Ingredient ID to Delete</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #ingredientdeleteForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Ingredient ID</mat-label>
+              <input required matInput [(ngModel)]="deleteIngredientId" name="Ingredient ID">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitDeleteIngredient()">Delete an Ingredient</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Update Ingredient</mat-card-title>
+          <mat-card-subtitle>Update an Ingredient by ID</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #ingredientCreateForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Ingredient ID</mat-label>
+              <input required matInput [(ngModel)]="updateIngredient.id" name="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Ingredient Name</mat-label>
+              <input required matInput [(ngModel)]="updateIngredient.name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Ingredient Category</mat-label>
+              <input required matInput [(ngModel)]="updateIngredient.category" name="category">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitUpdateIngredient(updateIngredient)">Update Ingredient</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
