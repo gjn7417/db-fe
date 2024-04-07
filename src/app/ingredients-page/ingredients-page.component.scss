@@ -1,0 +1,29 @@
+mat-grid-tile {
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
+.form-field-content {
+  padding-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+mat-card {
+  display: flex;
+  width: 100%;
+  margin: 20px;
+  margin-bottom: 50px;
+  overflow: auto;
+  height: 100%; // 100% of the parent's height
+}
+
+mat-card-content {
+  display: flex;
+  height: 100%; // 100% of the parent's height
+  width: 100%; // 100% of the parent's width
+  overflow: auto;
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExpandableTableComponent} from "../expandable-table/expandable-table.component";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
@@ -20,7 +20,7 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) { }
   ngOnInit() {
     this.http.get('').subscribe(data => {
