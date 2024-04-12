@@ -1,0 +1,26 @@
+<div>
+<h2 mat-dialog-title>Create User</h2>
+<mat-dialog-content>
+  <p> what </p>
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="data.first_name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="data.last_name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>User Name</mat-label>
+    <input matInput [(ngModel)]="data.user_name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="data.email">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCreateUserClick()">Create User</button>
+  <button mat-button [mat-dialog-close]="data.first_name" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+</div>
