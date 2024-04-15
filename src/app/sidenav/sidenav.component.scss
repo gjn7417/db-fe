@@ -2,6 +2,17 @@
   padding: 2%;
 }
 
+.user-select{
+  display: flex;
+  width: 150px;
+  height: auto;
+}
+
+.example-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
 .example-container {
     display: flex;
     flex-direction: column;

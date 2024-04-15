@@ -1,0 +1,10 @@
+<div>
+  <mat-form-field>
+    <mat-label>Active User</mat-label>
+    <mat-select (selectionChange)="onUserSelect($event)">
+      @for (user of users; track users) {
+        <mat-option [value]="user.email">{{user.first_name}} {{user.last_name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
