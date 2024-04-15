@@ -9,8 +9,18 @@ import {UserData} from "./user-interface";
 })
 export class UserService {
   private userData = new BehaviorSubject<UserData[]>([]);
+  activeUser: any;
+
   constructor(private http: HttpClient) { }
 
+  setActiveUser(user: any): void {
+    this.activeUser = user;
+    console.log("Active User: " + this.activeUser);
+  }
+
+  getActiveUser(): any {
+    return this.activeUser;
+  }
 
   createNewUser(data: UserData): Observable<Object> {
     return this.http.post('http://127.0.0.1:8080/users/create-user', data)

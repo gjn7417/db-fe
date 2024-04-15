@@ -25,6 +25,10 @@ export class UserSelectComponent implements OnInit {
     });
   }
 
+  onUserSelect(event: any): void {
+    this.userService.setActiveUser(event.value);
+  }
+
   public callUpdateUsers(): void {
     this.userService.updateUsers();
   }
