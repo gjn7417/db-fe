@@ -4,25 +4,32 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-export interface IngredientsTableItem {
-  name: string;
+// TODO: Replace this with your own data model type
+export interface RecipeTableItem {
+  recipe_name: string;
   id: number;
-  food_category: string;
+  user_email: string;
+  difficulty: string;
+  rating: number;
+  time_in_min: number;
 }
 
-const EXAMPLE_DATA: IngredientsTableItem[] = [
-  {id: 1, name: 'Tomato', food_category: 'Vegetable'},
-  {id: 2, name: 'Sourdough Bread ', food_category: 'Bread'},
-  {id: 3, name: 'Parmesan Cheese', food_category: 'Dairy'},
+// TODO: replace this with real data from your application
+const EXAMPLE_DATA: RecipeTableItem[] = [
+  {id: 1, recipe_name: 'Hydrogen', rating: 1.0079, user_email: 'H', difficulty: 'easy', time_in_min: 1},
+  {id: 2, recipe_name: 'Helium', rating: 4.0026, user_email: 'He', difficulty: 'easy', time_in_min: 2},
+  {id: 3, recipe_name: 'Lithium', rating: 6.941, user_email: 'Li', difficulty: 'easy', time_in_min: 3},
+  {id: 4, recipe_name: 'Beryllium', rating: 9.0122, user_email: 'Be', difficulty: 'easy', time_in_min: 4},
+  {id: 5, recipe_name: 'Boron', rating: 10.811, user_email: 'B', difficulty: 'easy', time_in_min: 5},
 ];
 
 /**
- * Data source for the IngredientsTable view. This class should
+ * Data source for the RecipeTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class IngredientsTableDataSource extends DataSource<IngredientsTableItem> {
-  data: IngredientsTableItem[] = [];
+export class RecipeTableDataSource extends DataSource<RecipeTableItem> {
+  data: RecipeTableItem[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -35,7 +42,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<IngredientsTableItem[]> {
+  connect(): Observable<RecipeTableItem[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -58,7 +65,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: IngredientsTableItem[]): IngredientsTableItem[] {
+  private getPagedData(data: RecipeTableItem[]): RecipeTableItem[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -71,7 +78,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: IngredientsTableItem[]): IngredientsTableItem[] {
+  private getSortedData(data: RecipeTableItem[]): RecipeTableItem[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -79,9 +86,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
-        case 'food_category': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
     });
