@@ -1,0 +1,72 @@
+h2 {
+  color: #333;
+  font-size: 2em;
+}
+
+.mat-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-table th, .mat-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.mat-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.mat-table tr:hover {background-color: #ddd;}
+
+.mat-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #aaa7a7;
+  color: white;
+}
+
+recipe-details {
+  display: flex;
+  width: 100%;
+}
+
+p {
+  color: #666;
+  font-size: 1em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px 0;
+}
+
+mat-grid-tile {
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+}
+
+mat-card {
+  width: 100%;
+  display: flex;
+  margin: 20px;
+  margin-bottom: 50px;
+  overflow: auto;
+  height: 100%; // 100% of the parent's height
+}
+
+mat-card-content {
+  display: flex;
+  height: 100%; // 100% of the parent's height
+  width: 100%; // 100% of the parent's width
+  overflow: auto;
+}
+
+app-expandable-table {
+  max-height: 100%; // 100% of the parent's height
+  overflow-y: auto; // Add a vertical scrollbar when necessary
+}

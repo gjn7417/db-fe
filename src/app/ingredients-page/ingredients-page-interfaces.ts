@@ -1,10 +1,6 @@
-export interface NewIngredientForm {
-  name: string;
-  category: string;
-}
 
-export interface UpdateIngredientForm {
+export interface Ingredient {
   name: string;
-  id: number;
-  category: string;
+  id?: number;
+  food_category: string;
 }

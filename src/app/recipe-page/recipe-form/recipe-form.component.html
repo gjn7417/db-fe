@@ -1,0 +1,23 @@
+<form [formGroup]="recipeForm" class="recipe-form">
+  <mat-form-field class="form-component">
+    <mat-label>Recipe Name</mat-label>
+    <input matInput formControlName="recipe_name" required>
+  </mat-form-field>
+
+  <mat-form-field class="form-component">
+    <mat-label>Instructions</mat-label>
+    <textarea matInput formControlName="instructions" required></textarea>
+  </mat-form-field >
+
+  <app-ingredient-chip-select class="form-component" (ingredientsList)="onIngredientsList($event)"></app-ingredient-chip-select>
+
+  <mat-form-field class="form-component">
+    <mat-label>Difficulty</mat-label>
+    <textarea matInput type="number" formControlName="difficulty" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="form-component">
+    <mat-label>Time To Prep (In Minutes)</mat-label>
+    <textarea matInput type="number" formControlName="time_in_min" required></textarea>
+  </mat-form-field>
+</form>
