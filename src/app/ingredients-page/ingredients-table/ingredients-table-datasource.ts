@@ -3,14 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import {Ingredient} from "../ingredients-page-interfaces";
 
-export interface IngredientsTableItem {
-  name: string;
-  id: number;
-  food_category: string;
-}
-
-const EXAMPLE_DATA: IngredientsTableItem[] = [
+const EXAMPLE_DATA: Ingredient[] = [
   {id: 1, name: 'Tomato', food_category: 'Vegetable'},
   {id: 2, name: 'Sourdough Bread ', food_category: 'Bread'},
   {id: 3, name: 'Parmesan Cheese', food_category: 'Dairy'},
@@ -21,8 +16,8 @@ const EXAMPLE_DATA: IngredientsTableItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class IngredientsTableDataSource extends DataSource<IngredientsTableItem> {
-  data: IngredientsTableItem[] = [];
+export class IngredientsTableDataSource extends DataSource<Ingredient> {
+  data: Ingredient[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -35,7 +30,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<IngredientsTableItem[]> {
+  connect(): Observable<Ingredient[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -58,7 +53,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: IngredientsTableItem[]): IngredientsTableItem[] {
+  private getPagedData(data: Ingredient[]): Ingredient[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -71,7 +66,7 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: IngredientsTableItem[]): IngredientsTableItem[] {
+  private getSortedData(data: Ingredient[]): Ingredient[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -80,8 +75,10 @@ export class IngredientsTableDataSource extends DataSource<IngredientsTableItem>
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
-        case 'food_category': return compare(+a.id, +b.id, isAsc);
+        case 'id': // @ts-ignore
+          return compare(+a.id, +b.id, isAsc);
+        case 'food_category': // @ts-ignore
+          return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
     });

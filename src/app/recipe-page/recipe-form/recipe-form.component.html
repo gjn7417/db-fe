@@ -1,4 +1,4 @@
-<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="recipe-form">
+<form [formGroup]="recipeForm" class="recipe-form">
   <mat-form-field class="form-component">
     <mat-label>Recipe Name</mat-label>
     <input matInput formControlName="recipe_name" required>
@@ -20,6 +20,4 @@
     <mat-label>Time To Prep (In Minutes)</mat-label>
     <textarea matInput type="number" formControlName="time_in_min" required></textarea>
   </mat-form-field>
-
-  <button mat-raised-button color="primary" type="submit" [disabled]="recipeForm.invalid">Create Recipe</button>
 </form>

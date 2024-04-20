@@ -8,7 +8,7 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {IngredientsServiceService} from "./ingredients-service.service";
-import {NewIngredientForm, UpdateIngredientForm} from "./ingredients-page-interfaces";
+import {Ingredient} from "./ingredients-page-interfaces";
 
 @Component({
   selector: 'app-ingredients-page',
@@ -35,26 +35,26 @@ import {NewIngredientForm, UpdateIngredientForm} from "./ingredients-page-interf
 })
 export class IngredientsPageComponent {
   @ViewChild(IngredientsTableComponent) ingredientsTableComponent!: IngredientsTableComponent;
-  newIngredient: NewIngredientForm = {
+  newIngredient: Ingredient = {
     name: '',
-    category: ''
+    food_category: ''
   };
 
-  updateIngredient: UpdateIngredientForm = {
+  updateIngredient: Ingredient = {
     id: 0,
     name: '',
-    category: ''
+    food_category: ''
   };
 
   deleteIngredientId: number = 0;
 
 
   constructor(private ingredientsService: IngredientsServiceService) {}
-  submitCreateIngredient(data: NewIngredientForm): void {
+  submitCreateIngredient(data: Ingredient): void {
     this.ingredientsService.createNewIngredient(data);
   }
 
-  submitUpdateIngredient(data: UpdateIngredientForm): void {
+  submitUpdateIngredient(data: Ingredient): void {
     this.ingredientsService.updateIngredient(data);
   }
 

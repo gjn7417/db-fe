@@ -1,22 +1,22 @@
 <mat-form-field class="example-chip-list">
   <mat-label>Select Ingredients</mat-label>
   <mat-chip-grid #chipGrid aria-label="Fruit selection">
-    @for (fruit of fruits; track fruit) {
-      <mat-chip-row (removed)="remove(fruit)">
-        {{fruit}}
-        <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+    @for (ingredient of ingredients; track ingredient) {
+      <mat-chip-row (removed)="remove(ingredient)">
+        {{ingredient.name}}
+        <button matChipRemove [attr.aria-label]="'remove ' + ingredient">
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip-row>
     }
   </mat-chip-grid>
-  <input placeholder="Add Ingredient..." #fruitInput [formControl]="fruitCtrl"
+  <input placeholder="Add Ingredient..." #ingredientInput [formControl]="ingredientCtrl"
          [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
          (matChipInputTokenEnd)="add($event)"/>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    @for (fruit of filteredFruits | async; track fruit) {
-      <mat-option [value]="fruit">{{fruit}}</mat-option>
+    @for (ingredient of filteredIngredients | async; track ingredient) {
+      <mat-option [value]="ingredient">{{ingredient.name}}</mat-option>
     }
   </mat-autocomplete>
 </mat-form-field>

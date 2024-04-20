@@ -19,7 +19,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Ingredient Category</mat-label>
-              <input required matInput [(ngModel)]="newIngredient.category" name="category">
+              <input required matInput [(ngModel)]="newIngredient.food_category" name="category">
             </mat-form-field>
             <button mat-flat-button color="primary" (click)="submitCreateIngredient(newIngredient)">Submit New Ingredient</button>
           </form>
@@ -61,7 +61,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Ingredient Category</mat-label>
-              <input required matInput [(ngModel)]="updateIngredient.category" name="category">
+              <input required matInput [(ngModel)]="updateIngredient.food_category" name="category">
             </mat-form-field>
             <button mat-flat-button color="primary" (click)="submitUpdateIngredient(updateIngredient)">Update Ingredient</button>
           </form>

@@ -1,30 +1,29 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {IngredientsTableItem} from "./ingredients-table/ingredients-table-datasource";
 import {BehaviorSubject, catchError, Observable, of, tap} from "rxjs";
-import {NewIngredientForm, UpdateIngredientForm} from "./ingredients-page-interfaces";
+import {Ingredient} from "./ingredients-page-interfaces";
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientsServiceService {
-  private ingredientsData = new BehaviorSubject<IngredientsTableItem[]>([]);
+  private ingredientsData = new BehaviorSubject<Ingredient[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  getIngredients(): Observable<IngredientsTableItem[]> {
+  getIngredients(): Observable<Ingredient[]> {
     return this.ingredientsData.asObservable();
   }
 
   updateIngredients(): void {
-    this.http.get<IngredientsTableItem[]>('http://127.0.0.1:8080/ingredients/get-all-ingredients')
+    this.http.get<Ingredient[]>('http://127.0.0.1:8080/ingredients/get-all-ingredients')
       .subscribe(
         data => this.ingredientsData.next(data),
         error => console.error('Error updating ingredients', error)
       );
   }
 
-  createNewIngredient(data: NewIngredientForm): void {
+  createNewIngredient(data: Ingredient): void {
     this.http.post('http://127.0.0.1:8080/ingredients/create-ingredient', data)
       .subscribe(
         response => {
@@ -35,7 +34,7 @@ export class IngredientsServiceService {
       );
   }
 
-  updateIngredient(data: UpdateIngredientForm): void {
+  updateIngredient(data: Ingredient): void {
     this.http.put('http://127.0.0.1:8080/ingredients/update-ingredient', data)
       .subscribe(
         response => {

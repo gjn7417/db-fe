@@ -3,6 +3,10 @@
     <mat-card-title>Create Recipe</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <app-recipe-form></app-recipe-form>
+    <app-recipe-form [recipe]="recipe"></app-recipe-form>
+    <div>
+      <button mat-stroked-button *ngIf="!isEdit" (click)="onCreateRecipe()">Create</button>
+      <button mat-stroked-button *ngIf="isEdit" (click)="onUpdateRecipe()">Update</button>
+    </div>
   </mat-card-content>
 </mat-card>

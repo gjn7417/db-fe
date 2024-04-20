@@ -2,8 +2,9 @@ import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@a
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
-import { IngredientsTableDataSource, IngredientsTableItem } from './ingredients-table-datasource';
+import { IngredientsTableDataSource } from './ingredients-table-datasource';
 import {IngredientsServiceService} from "../ingredients-service.service";
+import {Ingredient} from "../ingredients-page-interfaces";
 
 @Component({
   selector: 'app-ingredients-table',
@@ -15,14 +16,13 @@ import {IngredientsServiceService} from "../ingredients-service.service";
 export class IngredientsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<IngredientsTableItem>;
+  @ViewChild(MatTable) table!: MatTable<Ingredient>;
   dataSource: IngredientsTableDataSource = new IngredientsTableDataSource();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'food_category'];
 
-  constructor(private ingredientsService: IngredientsServiceService,
-              private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private ingredientsService: IngredientsServiceService) {}
 
   ngOnInit(): void {
     this.ingredientsService.updateIngredients();

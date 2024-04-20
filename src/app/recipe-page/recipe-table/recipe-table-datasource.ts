@@ -9,18 +9,19 @@ export interface RecipeTableItem {
   recipe_name: string;
   id: number;
   user_email: string;
-  difficulty: string;
-  rating: number;
+  difficulty: number;
   time_in_min: number;
+  instructions: string;
 }
 
-// TODO: replace this with real data from your application
+// Used for testing
 const EXAMPLE_DATA: RecipeTableItem[] = [
-  {id: 1, recipe_name: 'Hydrogen', rating: 1.0079, user_email: 'H', difficulty: 'easy', time_in_min: 1},
-  {id: 2, recipe_name: 'Helium', rating: 4.0026, user_email: 'He', difficulty: 'easy', time_in_min: 2},
-  {id: 3, recipe_name: 'Lithium', rating: 6.941, user_email: 'Li', difficulty: 'easy', time_in_min: 3},
-  {id: 4, recipe_name: 'Beryllium', rating: 9.0122, user_email: 'Be', difficulty: 'easy', time_in_min: 4},
-  {id: 5, recipe_name: 'Boron', rating: 10.811, user_email: 'B', difficulty: 'easy', time_in_min: 5},
+  {id: 1, recipe_name: 'Hydrogen', user_email: 'H', difficulty: 1, time_in_min: 1, instructions: 'Do this first'},
+  {id: 6, recipe_name: 'Carbon', user_email: 'C', difficulty: 2, time_in_min: 10, instructions: 'Mix ingredients'},
+  {id: 7, recipe_name: 'Nitrogen', user_email: 'N', difficulty: 3, time_in_min: 15, instructions: 'Bake for 15 minutes'},
+  {id: 8, recipe_name: 'Oxygen', user_email: 'O', difficulty: 1, time_in_min: 5, instructions: 'Stir and serve'},
+  {id: 9, recipe_name: 'Fluorine', user_email: 'F', difficulty: 4, time_in_min: 20, instructions: 'Chill before serving'},
+  {id: 10, recipe_name: 'Neon', user_email: 'Ne', difficulty: 2, time_in_min: 10, instructions: 'Heat and enjoy'},
 ];
 
 /**
