@@ -12,8 +12,8 @@ export interface Recipe {
 }
 
 export interface RecipeReview {
-  id: number;
+  id?: number;
   text: string;
   rating: number;
-  recipe_id: number;
+  recipe_id?: number;
 }

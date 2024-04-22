@@ -1,0 +1,17 @@
+<form [formGroup]="reviewForm" class="recipe-form">
+  <mat-form-field *ngIf="isEdit" class="form-component">
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id" required>
+  </mat-form-field>
+
+  <mat-form-field class="form-component">
+    <mat-label>Text</mat-label>
+    <textarea matInput formControlName="text" required></textarea>
+  </mat-form-field >
+<mat-form-field class="form-component">
+    <mat-label>Rating</mat-label>
+    <mat-select formControlName="rating" required>
+      <mat-option *ngFor="let rating of ratings" [value]="rating">{{rating}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

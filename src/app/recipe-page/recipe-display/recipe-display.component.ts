@@ -9,6 +9,8 @@ import {MatButton} from "@angular/material/button";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateRecipeModalComponent} from "../create-recipe-modal/create-recipe-modal.component";
 import {RecipeService} from "../recipe.service";
+import {Ingredient} from "../../ingredients-page/ingredients-page-interfaces";
+import {RecipeReviewModalComponent} from "../recipe-review-modal/recipe-review-modal.component";
 
 @Component({
   selector: 'app-recipe-display',
@@ -46,6 +48,11 @@ export class RecipeDisplayComponent implements OnInit {
       this.recipeService.getRecipeReviews(this.recipe.id).subscribe(data => {
         this.recipe.reviews = data as RecipeReview[];
       });
+
+      this.recipeService.getRecipeIngredients(this.recipe.id).subscribe(data => {
+        console.log(data)
+        this.recipe.ingredients_list = data as Ingredient[];
+      });
     }
   }
 
@@ -59,4 +66,41 @@ export class RecipeDisplayComponent implements OnInit {
       }
     });
   }
+
+  onAddReviewClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeReviewModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: false,
+        isDelete: false
+      }
+    });
+  }
+
+  onEditReviewClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeReviewModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: true,
+        isDelete: false
+      }
+    });
+  }
+
+  onDeleteReviewClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeReviewModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: true,
+        isDelete: true
+      }
+    });
+  }
+
 }

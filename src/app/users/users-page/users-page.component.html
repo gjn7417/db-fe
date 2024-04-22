@@ -1,0 +1,19 @@
+<button mat-button (click)="openCreateUser()">Create User</button>
+<table>
+  <thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>User Name</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of this.userData">
+    <td>{{user.first_name}}</td>
+    <td>{{user.last_name}}</td>
+    <td>{{user.user_name}}</td>
+    <td>{{user.email}}</td>
+  </tr>
+  </tbody>
+</table>
