@@ -4,6 +4,7 @@ import {RecipePageComponent} from "./recipe-page/recipe-page.component";
 import {RecipeDisplayComponent} from "./recipe-page/recipe-display/recipe-display.component";
 import {UsersPageComponent} from "./users/users-page/users-page.component";
 import {ToolsComponent} from "./tools/tools.component";
+import {ViewsPageComponent} from "./views-page/views-page.component";
 
 export const routes: Routes = [
   { path: 'ingredients', component: IngredientsPageComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'recipe-detail', component: RecipeDisplayComponent },
   { path: 'users', component: UsersPageComponent },
   { path: 'tools', component: ToolsComponent },
+  { path: 'views', component: ViewsPageComponent },
   { path: '', redirectTo: '/recipes', pathMatch: 'full' }
 ];

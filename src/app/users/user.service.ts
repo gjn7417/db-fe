@@ -38,4 +38,15 @@ export class UserService {
     return this.userData.asObservable();
   }
 
+  updateUser(data: UserData): void {
+    this.http.put('http://127.0.0.1:8080/users/update-user', data)
+      .subscribe(
+        response => {
+          console.log('User updated successfully', response);
+          this.updateUsers();
+        },
+        error => console.error('Error updating user', error)
+      );
+  }
+
 }

@@ -1,0 +1,62 @@
+<div>
+  <h1>Recipe Ingredients View</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Recipe Name</th>
+        <th>User Email</th>
+        <th>Difficulty</th>
+        <th>Time in Min</th>
+        <th>Instructions</th>
+        <th>Ingredient ID</th>
+        <th>Ingredient Name</th>
+        <th>Food Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detail of recipeIngredientDetails">
+        <td>{{detail.id}}</td>
+        <td>{{detail.recipe_name}}</td>
+        <td>{{detail.user_email}}</td>
+        <td>{{detail.difficulty}}</td>
+        <td>{{detail.time_in_min}}</td>
+        <td>{{detail.instructions}}</td>
+        <td>{{detail.ingredient_id}}</td>
+        <td>{{detail.ingredient_name}}</td>
+        <td>{{detail.food_category}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h1>User Recipes View</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>User Name</th>
+        <th>Recipe ID</th>
+        <th>Recipe Name</th>
+        <th>Difficulty</th>
+        <th>Time in Min</th>
+        <th>Instructions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let userRecipe of userRecipes">
+        <td>{{userRecipe.email}}</td>
+        <td>{{userRecipe.first_name}}</td>
+        <td>{{userRecipe.last_name}}</td>
+        <td>{{userRecipe.user_name}}</td>
+        <td>{{userRecipe.recipe_id}}</td>
+        <td>{{userRecipe.recipe_name}}</td>
+        <td>{{userRecipe.difficulty}}</td>
+        <td>{{userRecipe.time_in_min}}</td>
+        <td>{{userRecipe.instructions}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
