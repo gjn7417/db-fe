@@ -4,6 +4,8 @@ import {Recipe, RecipeReview} from "./recipe-interface";
 import {BehaviorSubject, Observable} from "rxjs";
 import {RecipeTableItem} from "./recipe-table/recipe-table-datasource";
 import {map} from "rxjs/operators";
+import {Ingredient} from "../ingredients-page/ingredients-page-interfaces";
+import {Tool} from "../tools/tools-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,10 @@ export class RecipeService {
         data => this.recipeData.next(data),
         error => console.error('Error updating ingredients', error)
       );
+  }
+
+  deleteRecipe(id: number): Observable<Object> {
+    return this.http.delete('http://127.0.0.1:8080/recipes/delete-recipe', {params: {id: id.toString()}});
   }
 
   createNewRecipe(data: Recipe): void {
@@ -55,4 +61,60 @@ export class RecipeService {
       } as RecipeReview)))
     );
   }
+
+  getRecipeIngredients(id: number): Observable<Object>{
+    return this.http.get<any[]>(`http://127.0.0.1:8080/recipes/get-recipe-ingredients?id=${id}`).pipe(
+      map(data => data.map(item => ({
+        name: item.name,
+        id: item.id,
+        food_category: item.food_category
+      } as Ingredient)))
+    );
+  }
+
+  getRecipeTools(id: number): Observable<Object> {
+    return this.http.get<Tool[]>(`http://127.0.0.1:8080/recipes/get-recipe-tools?id=${id}`).pipe(
+      map(data => data.map(item => ({
+        id: item.id,
+        name: item.name,
+        brand: item.brand
+      } as Tool)))
+    );
+  }
+
+  createNewReview(data: RecipeReview): void {
+    this.http.post('http://127.0.0.1:8080/recipes/create-recipe-review', data)
+      .subscribe(
+        response => {
+          console.log('Revoiew created successfully', response);
+        },
+        error => console.error('Error creating review', error)
+      );
+  }
+
+  updateReview(data: RecipeReview): void {
+    this.http.post('http://127.0.0.1:8080/recipes/update-recipe-review', data)
+      .subscribe(
+        response => {
+          console.log('Review created successfully', response);
+        },
+        error => console.error('Error creating review', error)
+      );
+  }
+
+  deleteReview(id: number | undefined): void {
+    if (id === undefined) return;
+    this.http.delete('http://127.0.0.1:8080/recipes/delete-recipe-review', {params: {id: id.toString()}})
+      .subscribe(
+        response => {
+          console.log('Review deleted successfully', response);
+        },
+        error => console.error('Error deleting review', error)
+      );
+  }
+
+  getAverageRecipeRating(id: number): Observable<number> {
+    return this.http.get<any>(`http://127.0.0.1:8080/reports/get-avg-rating-of-recipe?id=${id}`);
+  }
+
 }

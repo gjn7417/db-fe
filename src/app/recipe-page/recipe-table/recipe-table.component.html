@@ -50,3 +50,29 @@
       aria-label="Select page">
   </mat-paginator>
 </div>
+
+<div>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Delete a Recipe</mat-card-title>
+          <mat-card-subtitle>Submit Recipe ID to delete</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #userdeleteForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Recipe ID</mat-label>
+              <input required matInput [(ngModel)]="deleteRecipeId" name="Recipe ID">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitDeleteRecipe()">Delete a Recipe</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

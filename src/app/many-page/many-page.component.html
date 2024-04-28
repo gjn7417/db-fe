@@ -1,0 +1,102 @@
+<div>
+<!-- Table for Recipe Ingredients -->
+<h1>Recipe Ingredients</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Recipe ID</th>
+      <th>Ingredient ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipeIngredient of recipeIngredients">
+      <td>{{ recipeIngredient.recipe_id }}</td>
+      <td>{{ recipeIngredient.ingredient_id }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<!-- Table for Recipe Tools -->
+<h1>Recipe Tools</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Recipe ID</th>
+      <th>Tool ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipeTool of recipeTools">
+      <td>{{ recipeTool.recipe_id }}</td>
+      <td>{{ recipeTool.tool_id }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Update Recipe Ingredients</mat-card-title>
+        <mat-card-subtitle>update recipe ingredients</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form #thingdeleteForm="ngForm" class="form-field-content">
+          <mat-form-field>
+            <mat-label>Recipe ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeIgredient.recipe_id" name="Ingredient ID">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Ingredient ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeIgredient.ingredient_id" name="Ingredient ID">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>New Recipe ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeIgredient.new_recipe_id" name="Ingredient ID">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>New Ingredient ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeIgredient.new_ingredient_id" name="Ingredient ID">
+          </mat-form-field>
+          <button mat-flat-button color="primary" (click)="submitUpdateRecipeIngredient()">Update</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Update Recipe Tools</mat-card-title>
+        <mat-card-subtitle>Update a recipe tool mapping</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form #idk="ngForm" class="form-field-content">
+          <mat-form-field>
+            <mat-label>Recipe ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeTool.recipe_id" name="Ingredient ID">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Tool ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeTool.tool_id" name="Ingredient ID">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>New Recipe ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeTool.new_recipe_id" name="Ingredient ID">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>New Tool ID</mat-label>
+            <input required matInput [(ngModel)]="updateRecipeTool.new_tool_id" name="Ingredient ID">
+          </mat-form-field>
+          <button mat-flat-button color="primary" (click)="submitUpdateRecipeTool()">Update</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>

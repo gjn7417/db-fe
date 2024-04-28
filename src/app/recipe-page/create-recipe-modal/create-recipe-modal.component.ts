@@ -53,10 +53,6 @@ export class CreateRecipeModalComponent {
     console.log('Edit', this.isEdit)
   }
 
-  onClick(){
-    console.log('Recipe form', this.recipeFormComponent?.getRecipeForm())
-  }
-
   onCreateRecipe(): void {
     let recipeForm = this.recipeFormComponent?.getRecipeForm();
     if (recipeForm?.valid) {

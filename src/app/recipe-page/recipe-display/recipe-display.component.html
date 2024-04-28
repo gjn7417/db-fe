@@ -7,6 +7,7 @@
       <mat-card-content>
         <div *ngIf="recipe" class="recipe-details">
           <h2>{{ recipe.recipe_name }}</h2>
+          <p>ID: {{ recipe.id }}</p>
           <p>By: {{ recipe.user_email }}</p>
           <p>Difficulty: {{ recipe.difficulty }}</p>
           <p>Time: {{ recipe.time_in_min }} minutes</p>
@@ -23,6 +24,11 @@
       <mat-card-content>
         <div>
           <button mat-stroked-button (click)="onEditRecipeClick(recipe)">Edit Recipe</button>
+          <button mat-stroked-button (click)="onAddReviewClick(recipe)">Add Review</button>
+          <button mat-stroked-button (click)="onEditReviewClick(recipe)">Edit Review</button>
+          <button mat-stroked-button (click)="onDeleteReviewClick(recipe)">Delete Review</button>
+          <button mat-stroked-button (click)="onAddToolClick(recipe)">Add Tool</button>
+          <button mat-stroked-button (click)="onDeleteToolClick(recipe)">Remove Tool</button>
         </div>
       </mat-card-content>
     </mat-card>
@@ -32,12 +38,13 @@
       <mat-card-header>
         <mat-card-title>Reviews</mat-card-title>
       </mat-card-header>
+      <mat-card-subtitle><p>Average Review Rating: {{averageRating}}</p></mat-card-subtitle>
       <mat-card-content>
         <div *ngIf="recipe" class="mat-table">
           <table>
             <thead>
             <tr>
-<!--              <th>ID</th>-->
+              <th>ID</th>
               <th>Review</th>
               <th>Rating</th>
 <!--              <th>Recipe ID</th>-->
@@ -45,7 +52,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let review of recipe.reviews">
-<!--              <td>{{ review.id }}</td>-->
+              <td>{{ review.id }}</td>
               <td>{{ review.text }}</td>
               <td>{{ review.rating }}</td>
 <!--              <td>{{ review.recipe_id }}</td>-->
@@ -62,10 +69,43 @@
         <mat-card-title>Ingredients</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div *ngIf="recipe" class="recipe-details">
-          <ul>
-            <li *ngFor="let ingredient of recipe.ingredients_list">{{ ingredient }}</li>
-          </ul>
+        <div *ngIf="recipe" class="mat-table">
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ingredient of recipe.ingredients_list">
+              <td>{{ ingredient.id }}</td>
+              <td>{{ ingredient.name }}</td>
+              <td>{{ ingredient.food_category }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="recipe" class="mat-table">
+          <h4>Tools</h4>
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Brand</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tool of recipe.tools">
+              <td>{{ tool.id }}</td>
+              <td>{{ tool.name }}</td>
+              <td>{{ tool.brand }}</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </mat-card-content>
     </mat-card>

@@ -1,0 +1,57 @@
+<h1>Reports</h1>
+<!-- Top Recipes Table -->
+<h1>Top Rated Recipes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Recipe Name</th>
+      <th>Average Rating</th>
+      <th>Number of Reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipe of topRecipes">
+      <td>{{ recipe.recipe_name }}</td>
+      <td>{{ recipe.average_rating }}</td>
+      <td>{{ recipe.number_of_reviews }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Least Recipes Table -->
+<h1>Least Rated Recipes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Recipe Name</th>
+      <th>Average Rating</th>
+      <th>Number of Reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipe of lestRecipes">
+      <td>{{ recipe.recipe_name }}</td>
+      <td>{{ recipe.average_rating }}</td>
+      <td>{{ recipe.number_of_reviews }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Top Users Table -->
+<h1>Most Active Users</h1>
+<table>
+  <thead>
+    <tr>
+      <th>User Email</th>
+      <th>Number of Recipes</th>
+      <th>Average Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of topUsers">
+      <td>{{ user.email }}</td>
+      <td>{{ user.number_of_recipes }}</td>
+      <td>{{ user.average_rating }}</td>
+    </tr>
+  </tbody>
+</table>

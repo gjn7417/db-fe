@@ -9,7 +9,7 @@
     <textarea matInput formControlName="instructions" required></textarea>
   </mat-form-field >
 
-  <app-ingredient-chip-select class="form-component" (ingredientsList)="onIngredientsList($event)"></app-ingredient-chip-select>
+  <app-ingredient-chip-select class="form-component" [recipe]="this.recipe" (ingredientsList)="onIngredientsList($event)"></app-ingredient-chip-select>
 
   <mat-form-field class="form-component">
     <mat-label>Difficulty</mat-label>

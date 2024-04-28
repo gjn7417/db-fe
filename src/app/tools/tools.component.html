@@ -1,0 +1,74 @@
+<h1>Tools TABLE CRUD</h1>
+<div>
+  <app-tools-table [tools]="tools"></app-tools-table>
+</div>
+<br>
+<div>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Create New Tool</mat-card-title>
+          <mat-card-subtitle>Adds tool to Tools Table</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #toolCreateForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Tool Name</mat-label>
+              <input required matInput [(ngModel)]="newTool.name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Tool Brand</mat-label>
+              <input required matInput [(ngModel)]="newTool.brand" name="brand">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitCreateTool(newTool)">Submit New Tool</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Delete a Tool</mat-card-title>
+          <mat-card-subtitle>Submit an Tool ID to Delete</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #tooldeleteForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Tool ID</mat-label>
+              <input required matInput [(ngModel)]="deleteToolId" name="Ingredient ID">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitDeleteTool(deleteToolId)">Delete a Tool</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Update Tool</mat-card-title>
+          <mat-card-subtitle>Update a Tool by ID</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #toolUpdateForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>Tool ID</mat-label>
+              <input required matInput [(ngModel)]="updateTool.id" name="id">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Tool Name</mat-label>
+              <input required matInput [(ngModel)]="updateTool.name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Tool Brand</mat-label>
+              <input required matInput [(ngModel)]="updateTool.brand" name="brand">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="submitUpdateTool(updateTool)">Update Tool</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

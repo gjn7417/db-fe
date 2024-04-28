@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild, inject, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, ElementRef, ViewChild, inject, Output, EventEmitter, OnInit, Input} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {IngredientsServiceService} from "../ingredients-service.service";
 import {Ingredient} from "../ingredients-page-interfaces";
+import {Recipe} from "../../recipe-page/recipe-interface";
 
 @Component({
   selector: 'app-ingredient-chip-select',
@@ -26,6 +27,7 @@ import {Ingredient} from "../ingredients-page-interfaces";
   styleUrl: './ingredient-chip-select.component.scss'
 })
 export class IngredientChipSelectComponent implements OnInit {
+  @Input() recipe: Recipe | undefined;
 
   // @ts-ignore
   @Output() ingredientsList = new EventEmitter<Ingredient[]>();
@@ -52,6 +54,9 @@ export class IngredientChipSelectComponent implements OnInit {
     this.ingredientsService.getIngredients().subscribe(data => {
       this.allIngredients = data;
     });
+    if(this.recipe){
+      this.ingredients = this.recipe.ingredients_list;
+    }
     console.log(this.allIngredients)
   }
 

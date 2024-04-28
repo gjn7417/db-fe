@@ -9,6 +9,10 @@ import {MatButton} from "@angular/material/button";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateRecipeModalComponent} from "../create-recipe-modal/create-recipe-modal.component";
 import {RecipeService} from "../recipe.service";
+import {Ingredient} from "../../ingredients-page/ingredients-page-interfaces";
+import {RecipeReviewModalComponent} from "../recipe-review-modal/recipe-review-modal.component";
+import {RecipeToolModalComponent} from "../recipe-tool-modal/recipe-tool-modal.component";
+import {Tool} from "../../tools/tools-interface";
 
 @Component({
   selector: 'app-recipe-display',
@@ -33,6 +37,7 @@ export class RecipeDisplayComponent implements OnInit {
 
   // @ts-ignore
   @Input() recipe: Recipe;
+  averageRating: number = 0;
 
   constructor(private router: Router, public dialog: MatDialog, private recipeService: RecipeService) {
     const navigation = this.router.getCurrentNavigation();
@@ -45,6 +50,20 @@ export class RecipeDisplayComponent implements OnInit {
     if(this.recipe.id){
       this.recipeService.getRecipeReviews(this.recipe.id).subscribe(data => {
         this.recipe.reviews = data as RecipeReview[];
+      });
+
+      this.recipeService.getRecipeIngredients(this.recipe.id).subscribe(data => {
+        console.log(data)
+        this.recipe.ingredients_list = data as Ingredient[];
+      });
+
+      this.recipeService.getRecipeTools(this.recipe.id).subscribe(data => {
+        console.log(data)
+        this.recipe.tools = data as Tool[];
+      });
+
+      this.recipeService.getAverageRecipeRating(this.recipe.id).subscribe(data => {
+        this.averageRating = data as number;
       });
     }
   }
@@ -59,4 +78,65 @@ export class RecipeDisplayComponent implements OnInit {
       }
     });
   }
+
+  onAddReviewClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeReviewModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: false,
+        isDelete: false
+      }
+    });
+  }
+
+  onEditReviewClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeReviewModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: true,
+        isDelete: false
+      }
+    });
+  }
+
+  onDeleteReviewClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeReviewModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: true,
+        isDelete: true
+      }
+    });
+  }
+
+  onAddToolClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeToolModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: false,
+        isDelete: false
+      }
+    });
+  }
+
+  onDeleteToolClick(recipe: Recipe): void {
+    const dialogRef = this.dialog.open(RecipeToolModalComponent, {
+      height: '80%',
+      width: '60%',
+      data: {
+        recipe: recipe,
+        isEdit: true,
+        isDelete: true
+      }
+    });
+  }
+
 }
