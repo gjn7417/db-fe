@@ -27,6 +27,8 @@
           <button mat-stroked-button (click)="onAddReviewClick(recipe)">Add Review</button>
           <button mat-stroked-button (click)="onEditReviewClick(recipe)">Edit Review</button>
           <button mat-stroked-button (click)="onDeleteReviewClick(recipe)">Delete Review</button>
+          <button mat-stroked-button (click)="onAddToolClick(recipe)">Add Tool</button>
+          <button mat-stroked-button (click)="onDeleteToolClick(recipe)">Remove Tool</button>
         </div>
       </mat-card-content>
     </mat-card>
@@ -36,6 +38,7 @@
       <mat-card-header>
         <mat-card-title>Reviews</mat-card-title>
       </mat-card-header>
+      <mat-card-subtitle><p>Average Review Rating: {{averageRating}}</p></mat-card-subtitle>
       <mat-card-content>
         <div *ngIf="recipe" class="mat-table">
           <table>
@@ -80,6 +83,26 @@
               <td>{{ ingredient.id }}</td>
               <td>{{ ingredient.name }}</td>
               <td>{{ ingredient.food_category }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="recipe" class="mat-table">
+          <h4>Tools</h4>
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Brand</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tool of recipe.tools">
+              <td>{{ tool.id }}</td>
+              <td>{{ tool.name }}</td>
+              <td>{{ tool.brand }}</td>
             </tr>
             </tbody>
           </table>

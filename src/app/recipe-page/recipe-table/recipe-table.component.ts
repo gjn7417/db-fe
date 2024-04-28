@@ -10,19 +10,26 @@ import {CreateRecipeModalComponent} from "../create-recipe-modal/create-recipe-m
 import {RecipeService} from "../recipe.service";
 import {NavigationExtras, Router} from "@angular/router";
 import {Recipe} from "../recipe-interface";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatGridList, MatGridTile} from "@angular/material/grid-list";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-recipe-table',
   templateUrl: './recipe-table.component.html',
   styleUrl: './recipe-table.component.scss',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatButton]
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatButton, FormsModule, MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle, MatFormField, MatGridList, MatGridTile, MatInput, MatLabel, ReactiveFormsModule]
 })
 export class RecipeTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<RecipeTableItem>;
   dataSource = new RecipeTableDataSource();
+
+  deleteRecipeId: number = 0;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'recipe_name', 'user_email', 'difficulty', 'time_in_min'];
@@ -57,16 +64,6 @@ export class RecipeTableComponent implements AfterViewInit, OnInit {
     });
   }
 
-  onEditRecipeClick(recipe_id: number): void {
-    const dialogRef = this.dialog.open(UserCreateModalComponent, {
-      data: {first_name: "", last_name: "", email: "", user_name: ""}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
   navigateToNewPageWithObject(recipe: Recipe) {
     console.log(recipe)
     let navigationExtras: NavigationExtras = {
@@ -75,6 +72,12 @@ export class RecipeTableComponent implements AfterViewInit, OnInit {
       }
     };
     this.router.navigate(['/recipe-detail'], navigationExtras);
+  }
+
+  submitDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.deleteRecipeId).subscribe(data => {
+      this.recipeService.updateRecipes();
+    });
   }
 
 }

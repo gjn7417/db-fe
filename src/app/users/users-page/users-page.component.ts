@@ -46,6 +46,8 @@ export class UsersPageComponent implements OnInit {
   }
 
   deleteUserId: string = "";
+  userEmail: string = "";
+  userRecipeCount: string = "";
 
   constructor(private userService: UserService, public dialog: MatDialog){}
 
@@ -72,7 +74,15 @@ export class UsersPageComponent implements OnInit {
   }
 
   submitDeleteUser(email: string): void {
-    console.log("Deleting user with email: ", email);
+    this.userService.deleteUser(email);
+  }
+
+  getCountUserRecipes(email: string): void {
+    this.userService.getCountUserRecipes(email);
+    this.userService.getUserRecipeCount().subscribe(count => {
+      this.userRecipeCount = count;
+      console.log("User Recipe Count: " + this.userRecipeCount);
+    });
   }
 
 }

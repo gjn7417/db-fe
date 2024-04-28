@@ -56,5 +56,26 @@ export class ToolService {
         error => console.error('Error Deleting Tool', error)
       );
   }
+
+  addToolToRecipe(toolId: number | undefined, recipeId: number | undefined): void {
+    this.http.post('http://127.0.0.1:8080/recipes/add-recipe-tool', {tool_id: toolId, recipe_id: recipeId})
+      .subscribe(
+        response => {
+          console.log('Tool added to recipe successfully', response);
+        },
+        error => console.error('Error adding tool to recipe', error)
+      );
+  }
+
+  deleteToolFromRecipe(toolId: number, recipeId: number): void {
+    this.http.delete('http://127.0.0.1:8080/recipes/delete-recipe-tool', {params: {tool_id: toolId.toString(),
+        recipe_id: recipeId.toString()}})
+      .subscribe(
+        response => {
+          console.log('Tool deleted from recipe successfully', response);
+        },
+        error => console.error('Error deleting tool from recipe', error)
+      )
+  }
 }
 

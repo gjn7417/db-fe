@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Add Tool</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h3>Available Tools</h3>
+    <app-tools-table [tools]="tools"></app-tools-table>
+    <div *ngIf="!isDelete">
+      <mat-form-field class="form-component">
+        <mat-label>ID</mat-label>
+        <input matInput [(ngModel)]="addId" required>
+      </mat-form-field>
+      <button mat-stroked-button (click)="onAddTool()">Add Tool</button>
+    </div>
+    <div *ngIf="isDelete">
+      <mat-form-field class="form-component">
+        <mat-label>ID</mat-label>
+        <input matInput [(ngModel)]="deleteId" required>
+      </mat-form-field>
+      <button mat-stroked-button (click)="onDeleteTool()">Delete</button>
+    </div>
+  </mat-card-content>
+</mat-card>

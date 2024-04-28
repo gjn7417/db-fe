@@ -33,7 +33,7 @@
               <mat-label>User Email</mat-label>
               <input required matInput [(ngModel)]="deleteUserId" name="Ingredient ID">
             </mat-form-field>
-            <button mat-flat-button color="primary" (click)="submitDeleteUser(deleteUserId)">Delete a Tool</button>
+            <button mat-flat-button color="primary" (click)="submitDeleteUser(deleteUserId)">Delete a User</button>
           </form>
         </mat-card-content>
       </mat-card>
@@ -62,12 +62,27 @@
               <mat-label>Email</mat-label>
               <input required matInput [(ngModel)]="updateUser.email" name="brand">
             </mat-form-field>
-            <button mat-flat-button color="primary" (click)="submitUpdateUser(updateUser)">Update Tool</button>
+            <button mat-flat-button color="primary" (click)="submitUpdateUser(updateUser)">Update User</button>
           </form>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Count User Recipes</mat-card-title>
+          <mat-card-subtitle>User Recipe Count: {{userRecipeCount}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form #userdeleteForm="ngForm" class="form-field-content">
+            <mat-form-field>
+              <mat-label>User Email</mat-label>
+              <input required matInput [(ngModel)]="userEmail" name="Ingredient ID">
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="getCountUserRecipes(userEmail)">Get Total Recipes</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

@@ -9,6 +9,7 @@ import {UserData} from "./user-interface";
 })
 export class UserService {
   private userData = new BehaviorSubject<UserData[]>([]);
+  private userRecipeCount = new BehaviorSubject<string>('');
   activeUser: any;
 
   constructor(private http: HttpClient) { }
@@ -47,6 +48,32 @@ export class UserService {
         },
         error => console.error('Error updating user', error)
       );
+  }
+
+  getCountUserRecipes(email: string): void {
+    this.http.get(`http://127.0.0.1:8080/reports/get-user-recipe-count`, {params: {email: email}})
+      .subscribe(
+        response => {
+          console.log('User recipe count: ', response);
+          this.userRecipeCount.next(response.toString());
+        },
+        error => console.error('Error getting user recipe count', error)
+      );
+  }
+
+  getUserRecipeCount(): Observable<string> {
+    return this.userRecipeCount.asObservable();
+  }
+
+  deleteUser(email: string): void {
+    this.http.delete(`http://127.0.0.1:8080/users/delete-user`, {params: {email: email}})
+      .subscribe(
+        response => {
+          console.log('User deleted successfully', response);
+          this.updateUsers();
+        },
+        error => console.error('Error deleting user', error)
+      )
   }
 
 }
